@@ -1,0 +1,21 @@
+# Este Dockerfile define el entorno de liberación/pruebas de forma reproducible
+# Se puede usar para probar el script localmente:
+# 1. docker build -t stats-env -f Dockerfile.dev .
+# 2. docker run stats-env
+
+# Usar la imagen base oficial de Python 3.11
+FROM python:3.11-slim
+
+# Establecer el directorio de trabajo
+WORKDIR /app
+
+# Copiar los archivos del proyecto al contenedor
+COPY . .
+
+# (Opcional) Instalar dependencias si existen
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir -r requirements.txt
+
+# Comando por defecto que se ejecuta al correr el contenedor
+# Ejecuta el script de estadísticas
+CMD ["python", "./Roadmap/stats.py"]
